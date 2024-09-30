@@ -1,0 +1,16 @@
+.array-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 20px;
+    height: 500px;
+    border: 1px solid #ccc;
+  }
+  
+  .array-bar {
+    width: 10px;
+    margin: 0 1px;
+    background-color: teal;
+    transition: height 0.3s ease;
+  }
+  
