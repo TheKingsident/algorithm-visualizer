@@ -1,8 +1,7 @@
 import bubbleSort from '../algorithms/bubbleSort';
 import selectionSort from '../algorithms/selectionSort';
-// import other sorting algorithms here
 
-export const visualizeAlgorithm = (sortType, array) => {
+export const visualizeAlgorithm = (sortType, array, speed) => {
   let animations = [];
   switch (sortType) {
     case 'bubble':
@@ -17,7 +16,6 @@ export const visualizeAlgorithm = (sortType, array) => {
       return;
   }
 
-// Code for visualizing animations would go here
   for (let i = 0; i < animations.length; i++) {
     const [barOneIdx, barTwoIdx, swap] = animations[i];
     const arrayBars = document.getElementsByClassName('array-bar');
@@ -32,7 +30,7 @@ export const visualizeAlgorithm = (sortType, array) => {
       setTimeout(() => {
         arrayBars[barOneIdx].style.backgroundColor = 'teal';
         arrayBars[barTwoIdx].style.backgroundColor = 'teal';
-      }, 100);
-    }, i * 100);
+      }, speed);
+    }, i * speed);
   }
 };

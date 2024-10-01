@@ -1,5 +1,4 @@
 import Counter from './components/Counter';
-import Timer from './components/Timer';
 import './App.css';
 import Visualizer from './components/Visualizer';
 
