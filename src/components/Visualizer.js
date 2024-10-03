@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { visualizeAlgorithm } from '../utils/visualizeAlgorithm';
 import './Visualizer.css';
+import ControlPanel from './ControlPanel';
 
 function Visualizer() {
   const [array, setArray] = useState([])
@@ -16,7 +17,7 @@ function Visualizer() {
     generateArray();
   }, []);
 
-  const handleSort = (sortType) => {
+  const onAlgorithmChange = (sortType) => {
     visualizeAlgorithm(sortType, array, 100 - speed);
   }
 
@@ -31,24 +32,11 @@ function Visualizer() {
           <div key={idx} className="array-bar" style={{ height: `${value}px` }}></div>
         ))}
       </div>
-      <div className="controls">
-        {/* Speed control using range input */}
-        <label>Animation Speed</label>
-        <br></br>
-        <input
-          type="range"
-          min="10" // Minimum speed
-          max="100" // Maximum speed
-          value={speed} // Controlled input
-          onChange={(e) => onSpeedChange(e.target.value)} // Update speed when slider changes
-        />
-      </div>
-      <div className="button-container">
-        <button onClick={() => generateArray()}>Generate New Array</button>
-        <button onClick={() => handleSort('bubble')}>Bubble Sort</button>
-        <button onClick={() => handleSort('selection')}>Selection Sort</button>
-        <br></br>
-      </div>
+      <ControlPanel
+        speed={speed}
+        onSpeedChange={onSpeedChange} 
+        onResetArray={generateArray} 
+        onAlgorithmChange={onAlgorithmChange} />
     </div>
   );
 };
