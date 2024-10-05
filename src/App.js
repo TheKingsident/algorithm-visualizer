@@ -1,4 +1,3 @@
-import Counter from './components/Counter';
 import './App.css';
 import Visualizer from './components/Visualizer';
 
@@ -10,7 +9,6 @@ function App() {
       </header>
       <Visualizer />
       <br></br>
-      <Counter />
     </div>
   );
 }

@@ -1,7 +1,15 @@
 import bubbleSort from '../algorithms/bubbleSort';
 import selectionSort from '../algorithms/selectionSort';
 
-export const visualizeAlgorithm = (sortType, array, speed) => {
+export const visualizeAlgorithm = (
+  sortType,
+  array,
+  speed,
+  currentIndex,
+  setCurrentIndex,
+  animationRef,
+  onComplete
+) => {
   let animations = [];
   switch (sortType) {
     case 'bubble':

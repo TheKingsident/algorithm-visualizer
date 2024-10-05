@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { visualizeAlgorithm } from '../utils/visualizeAlgorithm';
 import './Visualizer.css';
 import ControlPanel from './ControlPanel';
 
 function Visualizer() {
-  const [array, setArray] = useState([])
+  const [array, setArray] = useState([]);
   const [speed, setSpeed] = useState(50);
+  const [sortingState, setSortingState] = useState('stopped');
+  const animationRef = useRef(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const generateArray = (size = 50) => {
     const newArray = Array.from({ length: size }, () => Math.floor(Math.random() * 500) + 5);
     console.log(newArray);
     setArray(newArray);
+    setSortingState('stopped');
+    setCurrentIndex(0);
   };
 
   useEffect(() => {
@@ -18,12 +23,54 @@ function Visualizer() {
   }, []);
 
   const onAlgorithmChange = (sortType) => {
-    visualizeAlgorithm(sortType, array, 100 - speed);
-  }
+    setSortingState('running');
+    visualizeAlgorithm(
+      sortType,
+      array,
+      100 - speed,
+      currentIndex,
+      setCurrentIndex,
+      animationRef,
+      () => {
+        setSortingState('stopped'); // Reset to 'stopped' when sorting is done
+  });
+  };
 
   const onSpeedChange = (value) => {
     setSpeed(Number(value));
-  }
+  };
+
+  const onPause = () => {
+    if (sortingState === 'running') {
+      clearTimeout(animationRef.current);
+      setSortingState('paused');
+    }
+  };
+
+  const onContinue = (sortType) => {
+    if (sortingState === 'paused') {
+      setSortingState('running');
+      visualizeAlgorithm(
+        sortType,       // Continue with the previously selected algorithm
+        array,
+        100 - speed,
+        currentIndex,
+        setCurrentIndex,
+        animationRef,
+        () => {
+          setSortingState('stopped');
+        }
+      );
+    }
+  };
+
+  const onStop = () => {
+    clearTimeout(animationRef.current);
+    setSortingState('stopped');
+    setCurrentIndex(0);
+    animationRef.current = null;
+    generateArray();
+  };
 
   return (
     <div className="visualizer">
@@ -36,7 +83,12 @@ function Visualizer() {
         speed={speed}
         onSpeedChange={onSpeedChange} 
         onResetArray={generateArray} 
-        onAlgorithmChange={onAlgorithmChange} />
+        onAlgorithmChange={onAlgorithmChange}
+        onPause={onPause}
+        onContinue={onContinue}
+        onStop={onStop}
+        sortingState={sortingState}
+      />
     </div>
   );
 };
