@@ -7,10 +7,11 @@ export const visualizeAlgorithm = (
   speed,
   currentIndex,
   setCurrentIndex,
-  animationRef,
-  onComplete
+  onAnimationComplete
 ) => {
   let animations = [];
+  let timeouts = [];
+
   switch (sortType) {
     case 'bubble':
       animations = bubbleSort(array);
@@ -24,10 +25,16 @@ export const visualizeAlgorithm = (
       return;
   }
 
+  if (!animations.length) {
+    onAnimationComplete(true); // Immediately mark as complete
+    return null;
+  }
+
   for (let i = 0; i < animations.length; i++) {
     const [barOneIdx, barTwoIdx, swap] = animations[i];
     const arrayBars = document.getElementsByClassName('array-bar');
-    setTimeout(() => {
+
+    const timeoutID = setTimeout(() => {
       arrayBars[barOneIdx].style.backgroundColor = 'red';
       arrayBars[barTwoIdx].style.backgroundColor = 'red';
       if (swap) {
@@ -38,7 +45,16 @@ export const visualizeAlgorithm = (
       setTimeout(() => {
         arrayBars[barOneIdx].style.backgroundColor = 'teal';
         arrayBars[barTwoIdx].style.backgroundColor = 'teal';
+
+        setCurrentIndex(i);
+
+        if (i === animations.length - 1) {
+          onAnimationComplete(true);  // Notify completion of sorting
+        }
       }, speed);
     }, i * speed);
+
+    timeouts.push(timeoutID);
   }
+  return timeouts;
 };

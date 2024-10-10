@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { visualizeAlgorithm } from '../utils/visualizeAlgorithm';
 import './Visualizer.css';
 import ControlPanel from './ControlPanel';
@@ -7,33 +7,35 @@ function Visualizer() {
   const [array, setArray] = useState([]);
   const [speed, setSpeed] = useState(50);
   const [sortingState, setSortingState] = useState('stopped');
-  const animationRef = useRef(null)
+  const [timeouts, setTimeouts] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [sortType, setSortType] = useState(null);
 
   const generateArray = (size = 50) => {
     const newArray = Array.from({ length: size }, () => Math.floor(Math.random() * 500) + 5);
-    console.log(newArray);
     setArray(newArray);
     setSortingState('stopped');
     setCurrentIndex(0);
+    clearAllTimeouts();  // Make sure to clear any running timeouts on new array generation
   };
 
   useEffect(() => {
     generateArray();
   }, []);
 
+  const clearAllTimeouts = () => {
+    timeouts.forEach(timeoutId => clearTimeout(timeoutId));
+    setTimeouts([]);
+  };
+
   const onAlgorithmChange = (sortType) => {
     setSortingState('running');
-    visualizeAlgorithm(
-      sortType,
-      array,
-      100 - speed,
-      currentIndex,
-      setCurrentIndex,
-      animationRef,
-      () => {
-        setSortingState('stopped'); // Reset to 'stopped' when sorting is done
-  });
+    const newTimeouts = visualizeAlgorithm(sortType, array, 100 - speed, currentIndex, setCurrentIndex, (completed) => {
+      if (completed) {
+        setSortingState('stopped');
+      }
+    });
+    setTimeouts(newTimeouts);  // Store all timeouts
   };
 
   const onSpeedChange = (value) => {
@@ -42,34 +44,24 @@ function Visualizer() {
 
   const onPause = () => {
     if (sortingState === 'running') {
-      clearTimeout(animationRef.current);
+      clearAllTimeouts();  // Pause by clearing timeouts
       setSortingState('paused');
     }
   };
 
-  const onContinue = (sortType) => {
+  const onContinue = () => {
     if (sortingState === 'paused') {
       setSortingState('running');
-      visualizeAlgorithm(
-        sortType,       // Continue with the previously selected algorithm
-        array,
-        100 - speed,
-        currentIndex,
-        setCurrentIndex,
-        animationRef,
-        () => {
-          setSortingState('stopped');
-        }
-      );
+      const newTimeouts = visualizeAlgorithm(sortType, array, 100 - speed, currentIndex, setCurrentIndex);
+      setTimeouts(newTimeouts);  // Resume with new timeouts
     }
   };
 
   const onStop = () => {
-    clearTimeout(animationRef.current);
+    clearAllTimeouts();  // Stop by clearing all timeouts
     setSortingState('stopped');
     setCurrentIndex(0);
-    animationRef.current = null;
-    generateArray();
+    generateArray();  // Reset to a new array
   };
 
   return (
@@ -81,8 +73,8 @@ function Visualizer() {
       </div>
       <ControlPanel
         speed={speed}
-        onSpeedChange={onSpeedChange} 
-        onResetArray={generateArray} 
+        onSpeedChange={onSpeedChange}
+        onResetArray={generateArray}
         onAlgorithmChange={onAlgorithmChange}
         onPause={onPause}
         onContinue={onContinue}
@@ -91,6 +83,6 @@ function Visualizer() {
       />
     </div>
   );
-};
+}
 
-export default Visualizer
+export default Visualizer;
