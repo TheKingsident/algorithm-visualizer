@@ -19,42 +19,44 @@ export const visualizeAlgorithm = (
     case 'selection':
       animations = selectionSort(array);
       break;
-    // Add other cases for different algorithms
-  default:
+    default:
       console.error('Unknown sorting algorithm:', sortType);
-      return;
+      return [];
   }
 
   if (!animations.length) {
-    onAnimationComplete(true); // Immediately mark as complete
-    return null;
+    onAnimationComplete(true);
+    return [];
   }
 
   for (let i = 0; i < animations.length; i++) {
     const [barOneIdx, barTwoIdx, swap] = animations[i];
     const arrayBars = document.getElementsByClassName('array-bar');
 
-    const timeoutID = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       arrayBars[barOneIdx].style.backgroundColor = 'red';
       arrayBars[barTwoIdx].style.backgroundColor = 'red';
+
       if (swap) {
         const tempHeight = arrayBars[barOneIdx].style.height;
         arrayBars[barOneIdx].style.height = arrayBars[barTwoIdx].style.height;
         arrayBars[barTwoIdx].style.height = tempHeight;
       }
+
       setTimeout(() => {
         arrayBars[barOneIdx].style.backgroundColor = 'teal';
         arrayBars[barTwoIdx].style.backgroundColor = 'teal';
-
         setCurrentIndex(i);
 
         if (i === animations.length - 1) {
-          onAnimationComplete(true);  // Notify completion of sorting
+          onAnimationComplete(true);
         }
       }, speed);
     }, i * speed);
 
-    timeouts.push(timeoutID);
+    timeouts.push(timeoutId);
+    console.info(animations);
   }
+
   return timeouts;
 };

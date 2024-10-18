@@ -30,6 +30,7 @@ function Visualizer() {
 
   const onAlgorithmChange = (sortType) => {
     setSortingState('running');
+    setSortType(sortType);
     const newTimeouts = visualizeAlgorithm(sortType, array, 100 - speed, currentIndex, setCurrentIndex, (completed) => {
       if (completed) {
         setSortingState('stopped');
@@ -52,8 +53,19 @@ function Visualizer() {
   const onContinue = () => {
     if (sortingState === 'paused') {
       setSortingState('running');
-      const newTimeouts = visualizeAlgorithm(sortType, array, 100 - speed, currentIndex, setCurrentIndex);
-      setTimeouts(newTimeouts);  // Resume with new timeouts
+      const newTimeouts = visualizeAlgorithm(
+        sortType,
+        array,
+        100 - speed,
+        currentIndex,
+        setCurrentIndex, 
+        (completed) => {
+          if (completed) {
+            setSortingState('stopped');
+          }
+        }
+      );
+      setTimeouts(newTimeouts);
     }
   };
 
@@ -61,6 +73,7 @@ function Visualizer() {
     clearAllTimeouts();  // Stop by clearing all timeouts
     setSortingState('stopped');
     setCurrentIndex(0);
+    setSortType(null);
     generateArray();  // Reset to a new array
   };
 
