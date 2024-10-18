@@ -1,4 +1,5 @@
 import bubbleSort from '../algorithms/bubbleSort';
+import insertionSort from '../algorithms/insertionSort';
 import selectionSort from '../algorithms/selectionSort';
 
 export const visualizeAlgorithm = (
@@ -18,6 +19,9 @@ export const visualizeAlgorithm = (
       break;
     case 'selection':
       animations = selectionSort(array);
+      break;
+    case 'insertion':
+      animations = insertionSort(array);
       break;
     default:
       console.error('Unknown sorting algorithm:', sortType);

@@ -3,9 +3,9 @@ const bubbleSort = (array) => {
     const arr = [...array];
     for (let i = 0; i < arr.length; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
-        animations.push([j, j + 1]); // Compare
+        animations.push([j, j + 1]);
         if (arr[j] > arr[j + 1]) {
-          animations.push([j, j + 1, true]); // Swap
+          animations.push([j, j + 1, true]);
           [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         }
       }
