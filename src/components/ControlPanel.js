@@ -29,6 +29,8 @@ const ControlPanel = ({
         <button onClick={() => onAlgorithmChange('selection')} disabled={sortingState === 'running' || sortingState === 'paused'}>Selection Sort</button>
         <button onClick={() => onAlgorithmChange('insertion')} disabled={sortingState === 'running' || sortingState === 'paused'}>Insertion Sort</button>
         <button onClick={() => onAlgorithmChange('merge')} disabled={sortingState === 'running' || sortingState === 'paused'}>Merge Sort</button>
+        <button onClick={() => onAlgorithmChange('quick')} disabled={sortingState === 'running' || sortingState === 'paused'}>Quick Sort</button>
+        <button onClick={() => onAlgorithmChange('heap')} disabled={sortingState === 'running' || sortingState === 'paused'}>Heap Sort</button>
         <button onClick={onPause} disabled={sortingState !== 'running'}>Pause</button>
         <button onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</button>
         <button onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</button>

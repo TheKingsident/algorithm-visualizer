@@ -1,6 +1,8 @@
 import bubbleSort from '../algorithms/bubbleSort';
+import heapSort from '../algorithms/heapSort';
 import insertionSort from '../algorithms/insertionSort';
 import mergeSort from '../algorithms/mergeSort';
+import quickSort from '../algorithms/quickSort';
 import selectionSort from '../algorithms/selectionSort';
 
 export const visualizeAlgorithm = (
@@ -27,6 +29,13 @@ export const visualizeAlgorithm = (
       case 'merge':
         animations = mergeSort(array);
         break;
+      case 'quick':
+        animations = quickSort(array);
+        break;
+      case 'heap':
+        animations = heapSort(array);
+        break;
+
     default:
       console.error('Unknown sorting algorithm:', sortType);
       return [];
