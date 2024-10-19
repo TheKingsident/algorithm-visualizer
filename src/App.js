@@ -1,14 +1,15 @@
 import './App.css';
+import { ChakraProvider } from '@chakra-ui/react';
 import Visualizer from './components/Visualizer';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Algorithm Visualizer</h1>
-      </header>
-      <Visualizer />
-      <br></br>
+      <ChakraProvider>
+        <Header />
+        <Visualizer />
+      </ChakraProvider>
     </div>
   );
 }
