@@ -1,3 +1,6 @@
+import AlgorithmPicker from "./AlgorithmPicker";
+import { Button } from "./ui/button";
+
 const ControlPanel = ({
   speed,
   onSpeedChange,
@@ -23,8 +26,8 @@ const ControlPanel = ({
           disabled={sortingState === 'running'} // Update speed when slider changes
         />
       </div>
-      <div className="button-container">
-        <button onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</button>
+      <div className="container">
+        <button type="button" onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</button>
         <button onClick={() => onAlgorithmChange('bubble')} disabled={sortingState === 'running' || sortingState === 'paused'}>Bubble Sort</button>
         <button onClick={() => onAlgorithmChange('selection')} disabled={sortingState === 'running' || sortingState === 'paused'}>Selection Sort</button>
         <button onClick={() => onAlgorithmChange('insertion')} disabled={sortingState === 'running' || sortingState === 'paused'}>Insertion Sort</button>
@@ -34,6 +37,8 @@ const ControlPanel = ({
         <button onClick={onPause} disabled={sortingState !== 'running'}>Pause</button>
         <button onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</button>
         <button onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</button>
+        <AlgorithmPicker onAlgorithmChange={onAlgorithmChange} disabled={sortingState === 'running' || sortingState === 'paused'} />
+        <Button variant="destructive">Secondary</Button>
       </div>
     </div>
   );

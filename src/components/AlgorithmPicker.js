@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,10 +10,10 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "./ui/dropdown-menu";
 
-export function DropdownMenuRadioGroupDemo() {
-  const [position, setPosition] = useState("bottom")
+function AlgorithmPicker() {
+  const [algorithm, setAlgorithm] = useState("bubble")
 
   return (
     <DropdownMenu>
@@ -23,7 +23,7 @@ export function DropdownMenuRadioGroupDemo() {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Select Algorithm</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+        <DropdownMenuRadioGroup value={algorithm} onValueChange={setAlgorithm}>
           <DropdownMenuRadioItem value="bubble">Bubble</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="selection">Selection</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="merge">Merge</DropdownMenuRadioItem>
@@ -33,5 +33,7 @@ export function DropdownMenuRadioGroupDemo() {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
+
+export default AlgorithmPicker;
