@@ -27,16 +27,16 @@ const ControlPanel = ({
         />
       </div>
       <div className="container">
-        <button type="button" onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</button>
-        <button onClick={() => onAlgorithmChange('bubble')} disabled={sortingState === 'running' || sortingState === 'paused'}>Bubble Sort</button>
-        <button onClick={() => onAlgorithmChange('selection')} disabled={sortingState === 'running' || sortingState === 'paused'}>Selection Sort</button>
-        <button onClick={() => onAlgorithmChange('insertion')} disabled={sortingState === 'running' || sortingState === 'paused'}>Insertion Sort</button>
-        <button onClick={() => onAlgorithmChange('merge')} disabled={sortingState === 'running' || sortingState === 'paused'}>Merge Sort</button>
-        <button onClick={() => onAlgorithmChange('quick')} disabled={sortingState === 'running' || sortingState === 'paused'}>Quick Sort</button>
-        <button onClick={() => onAlgorithmChange('heap')} disabled={sortingState === 'running' || sortingState === 'paused'}>Heap Sort</button>
-        <button onClick={onPause} disabled={sortingState !== 'running'}>Pause</button>
-        <button onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</button>
-        <button onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</button>
+        <Button onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</Button>
+        <Button onClick={() => onAlgorithmChange('bubble')} disabled={sortingState === 'running' || sortingState === 'paused'}>Bubble Sort</Button>
+        <Button onClick={() => onAlgorithmChange('selection')} disabled={sortingState === 'running' || sortingState === 'paused'}>Selection Sort</Button>
+        <Button onClick={() => onAlgorithmChange('insertion')} disabled={sortingState === 'running' || sortingState === 'paused'}>Insertion Sort</Button>
+        <Button onClick={() => onAlgorithmChange('merge')} disabled={sortingState === 'running' || sortingState === 'paused'}>Merge Sort</Button>
+        <Button onClick={() => onAlgorithmChange('quick')} disabled={sortingState === 'running' || sortingState === 'paused'}>Quick Sort</Button>
+        <Button onClick={() => onAlgorithmChange('heap')} disabled={sortingState === 'running' || sortingState === 'paused'}>Heap Sort</Button>
+        <Button onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>
+        <Button onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>
+        <Button onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
         <AlgorithmPicker onAlgorithmChange={onAlgorithmChange} disabled={sortingState === 'running' || sortingState === 'paused'} />
         <Button variant="destructive">Secondary</Button>
       </div>
