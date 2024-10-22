@@ -1,4 +1,4 @@
-import Visualizer from './components/Visualizer';
+import Visualizer from '@/components/Visualizer';
 
 function App() {
   return (
