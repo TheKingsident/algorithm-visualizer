@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 const ControlPanel = ({
   speed,
   onSpeedChange,
-  onAlgorithmChange, 
+  onAlgorithmChange,
   onResetArray,
   onPause,
   onContinue,
