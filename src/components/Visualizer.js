@@ -13,7 +13,7 @@ function Visualizer() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sortType, setSortType] = useState(null);
 
-  const generateArray = (size = 50) => {
+  const generateArray = (size = 150) => {
     const newArray = Array.from({ length: size }, () => Math.floor(Math.random() * 500) + 5);
     setArray(newArray);
     setSortingState('stopped');
@@ -32,6 +32,7 @@ function Visualizer() {
 
   const onAlgorithmChange = (selectedAlgorithm) => {
     setSortType(selectedAlgorithm);
+    generateArray();
   };
 
   const onStartSorting = () => {
