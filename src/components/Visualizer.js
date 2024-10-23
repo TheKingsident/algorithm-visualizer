@@ -7,7 +7,7 @@ import ControlPanel from './ControlPanel';
 
 function Visualizer() {
   const [array, setArray] = useState([]);
-  const [speed, setSpeed] = useState(50);
+  const [speed, setSpeed] = useState(60);
   const [sortingState, setSortingState] = useState('stopped');
   const [timeouts, setTimeouts] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,15 +30,27 @@ function Visualizer() {
     setTimeouts([]);
   };
 
-  const onAlgorithmChange = (sortType) => {
-    setSortingState('running');
-    setSortType(sortType);
-    const newTimeouts = visualizeAlgorithm(sortType, array, 100 - speed, currentIndex, setCurrentIndex, (completed) => {
-      if (completed) {
-        setSortingState('stopped');
-      }
-    });
-    setTimeouts(newTimeouts);  // Store all timeouts
+  const onAlgorithmChange = (selectedAlgorithm) => {
+    setSortType(selectedAlgorithm);
+  };
+
+  const onStartSorting = () => {
+    if (sortType) {
+      setSortingState('running');
+      const newTimeouts = visualizeAlgorithm(
+        sortType,
+        array,
+        100 - speed,
+        currentIndex,
+        setCurrentIndex, 
+        (completed) => {
+          if (completed) {
+            setSortingState('stopped');
+          }
+        }
+      );
+      setTimeouts(newTimeouts);
+    }
   };
 
   const onSpeedChange = (value) => {
@@ -95,6 +107,8 @@ function Visualizer() {
         onContinue={onContinue}
         onStop={onStop}
         sortingState={sortingState}
+        selectedAlgorithm={sortType}
+        onStartSorting={onStartSorting}
       />
     </div>
   );

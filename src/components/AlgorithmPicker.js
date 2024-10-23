@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { SlArrowUp, SlArrowDown } from "react-icons/sl";
+import { FaSpinner } from "react-icons/fa";
 
 import {
   DropdownMenu,
@@ -13,18 +15,52 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-function AlgorithmPicker() {
-  const [algorithm, setAlgorithm] = useState("bubble")
+function AlgorithmPicker({ selectedAlgorithm, onAlgorithmChange, disabled, sortingState }) {
+  const [algorithm, setAlgorithm] = useState("bubble");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleAlgorithmChange = (value) => {
+    setAlgorithm(value);
+    onAlgorithmChange(value);
+  };
+
+  const algorithmValue = (selectedAlgorithm) => {
+    switch (selectedAlgorithm) {
+      case "bubble":
+        return "Bubble";
+      case "selection":
+        return "Selection";
+      case "merge":
+        return "Merge";
+      case "quick":
+        return "Quick";
+      case "heap":
+        return "Heap";
+      case "insertion":
+        return "Insertion";
+      default:
+        return "Select Algorithm";
+    };
+  };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={(open) => setIsMenuOpen(open)}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Algorithm</Button>
+        <Button variant="outline" disabled={disabled}>
+          {selectedAlgorithm ? `Algorithm: ${algorithmValue(selectedAlgorithm)}` : 'Select Algorithm'}
+          {sortingState  ? (
+            <FaSpinner className="animate-spin ml-2" />
+          ) : isMenuOpen ? (
+            <SlArrowUp className="ml-2" />
+          ) : (
+            <SlArrowDown className="ml-2" />
+          )}
+          </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Select Algorithm</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={algorithm} onValueChange={setAlgorithm}>
+        <DropdownMenuRadioGroup value={algorithm} onValueChange={handleAlgorithmChange}>
           <DropdownMenuRadioItem value="bubble">Bubble</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="selection">Selection</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="merge">Merge</DropdownMenuRadioItem>
