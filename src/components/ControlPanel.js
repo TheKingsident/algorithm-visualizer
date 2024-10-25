@@ -1,13 +1,5 @@
 import AlgorithmPicker from "./AlgorithmPicker";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 
 
@@ -24,12 +16,11 @@ const ControlPanel = ({
   onStartSorting,
 }) => {
   return (
-    <Card className='bg-gray-900 text-white border-gray-700 pt-10'>
+    <div className="flex items-end justify-center m-5 p-2 rounded-lg border border-gray-700 bg-gray-900">
       <center>
-      <CardContent>
-        <div className="controls">
+        <div className="controls pt-5">
           <label className="text-gray-400">Animation Speed</label>
-          <div className="w-full max-w-md mx-auto pt-5">
+          <div className="w-full max-w-md mx-auto p-5">
             <Slider
               max={100}
               step={1}
@@ -39,25 +30,22 @@ const ControlPanel = ({
             />
           </div>
         </div>
-      </CardContent>
-      <CardContent>
-        <AlgorithmPicker className="m-1"
-          onAlgorithmChange={onAlgorithmChange}
-          selectedAlgorithm={selectedAlgorithm}
-          sortingState={sortingState}
-          disabled={sortingState === 'running' || sortingState === 'paused'} />
-        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStartSorting}
-          disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused' || sortingState === "finished"}>
-          Start Sorting
-        </Button>
-        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
-      </CardContent>
-      <CardContent>
-        {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>*/}
-        {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>*/}
-      </CardContent>
+        <div className="pb-5">
+          <AlgorithmPicker
+            onAlgorithmChange={onAlgorithmChange}
+            selectedAlgorithm={selectedAlgorithm}
+            sortingState={sortingState}
+            disabled={sortingState === 'running' || sortingState === 'paused'} />
+          <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStartSorting}
+            disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused' || sortingState === "finished"}>
+            Start Sorting
+          </Button>
+          <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
+          {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>*/}
+          {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>*/}
+        </div>
       </center>
-    </Card>
+    </div>
   );
 };
 
