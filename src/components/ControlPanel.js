@@ -47,7 +47,7 @@ const ControlPanel = ({
           sortingState={sortingState}
           disabled={sortingState === 'running' || sortingState === 'paused'} />
         <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStartSorting}
-          disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused'}>
+          disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused' || sortingState === "finished"}>
           Start Sorting
         </Button>
         <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>

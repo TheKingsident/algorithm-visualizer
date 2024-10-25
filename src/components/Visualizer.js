@@ -46,7 +46,7 @@ function Visualizer() {
         setCurrentIndex, 
         (completed) => {
           if (completed) {
-            setSortingState('stopped');
+            setSortingState('finished');
           }
         }
       );

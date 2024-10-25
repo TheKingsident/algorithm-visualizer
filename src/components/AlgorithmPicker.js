@@ -48,7 +48,7 @@ function AlgorithmPicker({ selectedAlgorithm, onAlgorithmChange, disabled, sorti
       <DropdownMenuTrigger asChild>
         <Button className="bg-indigo-400 text-white hover:bg-indigo-300" variant="outline" disabled={disabled}>
           {selectedAlgorithm ? `Algorithm: ${algorithmValue(selectedAlgorithm)}` : 'Select Algorithm'}
-          {sortingState !== "stopped" ? (
+          {sortingState === "running"? (
             <FaSpinner className="animate-spin ml-2" />
           ) : isMenuOpen ? (
             <SlArrowUp className="ml-2" />
