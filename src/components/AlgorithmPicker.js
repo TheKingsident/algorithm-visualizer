@@ -46,7 +46,7 @@ function AlgorithmPicker({ selectedAlgorithm, onAlgorithmChange, disabled, sorti
   return (
     <DropdownMenu onOpenChange={(open) => setIsMenuOpen(open)}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" disabled={disabled}>
+        <Button className="bg-indigo-400 text-white hover:bg-indigo-300" variant="outline" disabled={disabled}>
           {selectedAlgorithm ? `Algorithm: ${algorithmValue(selectedAlgorithm)}` : 'Select Algorithm'}
           {sortingState !== "stopped" ? (
             <FaSpinner className="animate-spin ml-2" />
@@ -57,9 +57,9 @@ function AlgorithmPicker({ selectedAlgorithm, onAlgorithmChange, disabled, sorti
           )}
           </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 bg-gray-900 text-white border-gray-800">
         <DropdownMenuLabel>Select Algorithm</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-gray-800" />
         <DropdownMenuRadioGroup value={algorithm} onValueChange={handleAlgorithmChange}>
           <DropdownMenuRadioItem value="bubble">Bubble</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="selection">Selection</DropdownMenuRadioItem>

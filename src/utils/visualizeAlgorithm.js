@@ -61,8 +61,8 @@ export const visualizeAlgorithm = (
       }
 
       setTimeout(() => {
-        arrayBars[barOneIdx].style.backgroundColor = 'teal';
-        arrayBars[barTwoIdx].style.backgroundColor = 'teal';
+        arrayBars[barOneIdx].style.backgroundColor = '#6366F1';
+        arrayBars[barTwoIdx].style.backgroundColor = '#6366F1';
         setCurrentIndex(i);
 
         if (i === animations.length - 1) {
@@ -72,7 +72,6 @@ export const visualizeAlgorithm = (
     }, i * speed);
 
     timeouts.push(timeoutId);
-    console.info(animations);
   }
 
   return timeouts;

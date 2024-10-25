@@ -24,14 +24,11 @@ const ControlPanel = ({
   onStartSorting,
 }) => {
   return (
-    <Card>
+    <Card className='bg-gray-900 text-white border-gray-700 pt-10'>
       <center>
-      <CardHeader>
-        <CardTitle>Control Panel</CardTitle>
-      </CardHeader>
       <CardContent>
         <div className="controls">
-          <label>Animation Speed</label>
+          <label className="text-gray-400">Animation Speed</label>
           <div className="w-full max-w-md mx-auto pt-5">
             <Slider
               max={100}
@@ -44,21 +41,21 @@ const ControlPanel = ({
         </div>
       </CardContent>
       <CardContent>
-        <Button className="m-1 bg-teal-700 text-white hover:bg-teal-600" onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</Button>
+        <Button className="m-1  bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</Button>
         <AlgorithmPicker className="m-1"
           onAlgorithmChange={onAlgorithmChange}
           selectedAlgorithm={selectedAlgorithm}
           sortingState={sortingState}
           disabled={sortingState === 'running' || sortingState === 'paused'} />
-        <Button className="m-1 bg-teal-700 text-white hover:bg-teal-600" onClick={onStartSorting}
+        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStartSorting}
           disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused'}>
           Start Sorting
         </Button>
       </CardContent>
       <CardContent>
-        <Button className="m-1 bg-teal-700 text-white hover:bg-teal-600" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>
-        <Button className="m-1 bg-teal-700 text-white hover:bg-teal-600" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>
-        <Button className="m-1 bg-teal-700 text-white hover:bg-teal-600" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
+        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>
+        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>
+        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
         
       </CardContent>
       </center>
