@@ -6,10 +6,6 @@ function Header() {
           <p className="mt-2 text-7xl font-semibold tracking-tight text-white sm:text-6xl">
             Algorithm Visualizer
           </p>
-          <p className="mt-6 text-xl leading-loose text-gray-400 font-medium">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem
-            cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.
-          </p>
         </div>
       </div>
     </div>

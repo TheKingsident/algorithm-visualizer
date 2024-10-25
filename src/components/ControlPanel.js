@@ -41,7 +41,6 @@ const ControlPanel = ({
         </div>
       </CardContent>
       <CardContent>
-        <Button className="m-1  bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={() => onResetArray(50)} disabled={sortingState === 'running'}>Generate New Array</Button>
         <AlgorithmPicker className="m-1"
           onAlgorithmChange={onAlgorithmChange}
           selectedAlgorithm={selectedAlgorithm}
@@ -51,12 +50,11 @@ const ControlPanel = ({
           disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused'}>
           Start Sorting
         </Button>
+        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
       </CardContent>
       <CardContent>
-        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>
-        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>
-        <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
-        
+        {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>*/}
+        {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>*/}
       </CardContent>
       </center>
     </Card>
