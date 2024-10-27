@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { visualizeAlgorithm } from '../utils/visualizeAlgorithm';
 import './Visualizer.css';
 import ControlPanel from './ControlPanel';
+import { visualizeMergeSort } from '@/utils/visualizeMergeSort';
 
 function Visualizer() {
   const [array, setArray] = useState([]);
@@ -37,6 +38,19 @@ function Visualizer() {
 
   const onStartSorting = () => {
     if (sortType) {
+      if (sortType === 'merge') {
+        setSortingState('running');
+        const newTimeouts = visualizeMergeSort(
+          array,
+          100 - speed,
+          setCurrentIndex,
+          (completed) => {
+            if (completed) {
+              setSortingState('finished');
+            }
+          }
+        )
+      }
       setSortingState('running');
       const newTimeouts = visualizeAlgorithm(
         sortType,
