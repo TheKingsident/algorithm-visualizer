@@ -18,7 +18,7 @@ function Visualizer() {
     setArray(newArray);
     setSortingState('stopped');
     setCurrentIndex(0);
-    clearAllTimeouts();  // Make sure to clear any running timeouts on new array generation
+    clearAllTimeouts();
   };
 
   useEffect(() => {
