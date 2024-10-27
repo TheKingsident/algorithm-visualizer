@@ -3,7 +3,7 @@ import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 p-4 pt-20 md:p-6 rounded-lg">
+    <footer className="bg-gray-900 p-4 md:p-6 rounded-lg mt-20">
     <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
       <span className="text-gray-400 text-sm">
         Proudly made in  <span role="img" aria-label="Nigerian flag">🇳🇬</span>  by Kingsley Usa
