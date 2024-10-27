@@ -63,7 +63,7 @@ function AlgorithmPicker({ selectedAlgorithm, onAlgorithmChange, disabled, sorti
         <DropdownMenuRadioGroup value={algorithm} onValueChange={handleAlgorithmChange}>
           <DropdownMenuRadioItem value="bubble">Bubble</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="selection">Selection</DropdownMenuRadioItem>
-          {/*<DropdownMenuRadioItem value="merge">Merge</DropdownMenuRadioItem>*/}
+          {/*<DropdownMenuRadioItem value="merge">Merges</DropdownMenuRadioItem>*/}
           <DropdownMenuRadioItem value="quick">Quick</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="heap">Heap</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="insertion">Insertion</DropdownMenuRadioItem>
