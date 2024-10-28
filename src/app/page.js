@@ -11,7 +11,7 @@ export const metadata = {
       url: "https://algorithm-visualizer-five-pi.vercel.app/",
       images: [
           {
-              url: "https://github.com/TheKingsident/algorithm-visualizer/blob/master/public/og-image.png",
+              url: "https://algorithm-visualizer-five-pi.vercel.app/og-image.png",
               width: 1200,
               height: 630,
               alt: "Hero Image",
