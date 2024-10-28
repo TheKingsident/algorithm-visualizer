@@ -4,10 +4,10 @@ import Visualizer from '@/components/Visualizer';
 
 export const metadata = {
   title: "Algorithm Visualizer",
-  description: "Explore, learn, and master sorting algorithms with our interactive Sorting Algorithm Visualizer. From classic algorithms like Heap Sort and Quick Sort to beginner-friendly Bubble Sort and Selection Sort, this tool allows you to watch each algorithm in action as it sorts an array in real time.",
+  description: "Master sorting algorithms with our interactive Sorting Algorithm Visualizer. This tool allows you to watch each algorithm in action as it sorts an array in real time.",
   openGraph: {
       title: "Algorithm Visualizer",
-      description: "Explore, learn, and master sorting algorithms with our interactive Sorting Algorithm Visualizer. From classic algorithms like Heap Sort and Quick Sort to beginner-friendly Bubble Sort and Selection Sort, this tool allows you to watch each algorithm in action as it sorts an array in real time.",
+      description: "Master sorting algorithms with our interactive Sorting Algorithm Visualizer. This tool allows you to watch each algorithm in action as it sorts an array in real time.",
       url: "https://algorithm-visualizer-five-pi.vercel.app/",
       images: [
           {
@@ -17,6 +17,11 @@ export const metadata = {
               alt: "Hero Image",
           },
       ],
+  },
+  twitter: {
+      title: "Algorithm Visualizer",
+      description: "Master sorting algorithms with our interactive Sorting Algorithm Visualizer. This tool allows you to watch each algorithm in action as it sorts an array in real time.",
+      images: ["https://algorithm-visualizer-five-pi.vercel.app/og-image.png"],
   },
 };
 
