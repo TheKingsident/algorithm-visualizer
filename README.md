@@ -57,7 +57,7 @@ This folder contains the reusable UI components that make up the main parts of t
 
 UI components to manage pop-ups and other interface elements.
 
-- **button.jsx/**: A customizable button component. It serves as a flexible button that you can style and reuse throughout the app wherever a button is needed.
+- **button.jsx/**: A customizable button component. It serves as the flexible button that you can style and reuse throughout the app wherever a button is needed.
 - **dropdown-menu.jsx/**: Adds a dropdown menu component that expands when clicked, showing the list of sorting algorithms. Great for offering users multiple options without cluttering the interface.
 - **sheet.jsx/**: The base component for sliding sheets, often used as a sidebar or a pop-up information pane. This component powers the AlgorithmInfoSheet, allowing information about algorithms to be displayed in an organized, off-canvas style.
 - **slider.jsx/**: A slider component that allows users to select a value from a range. Used for settings or input that requires selecting speed within a bounded range.
