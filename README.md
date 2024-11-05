@@ -51,7 +51,6 @@ This folder contains the reusable UI components that make up the main parts of t
 - **Counter.js**: A component for displaying or managing counters, possibly to show the steps or comparisons made during sorting.
 - **Footer.js**: The footer component, containing links to social media and credit information.
 - **Header.js**: The header component, providing the app’s title and navigation elements.
-- **Timer.js**: A timer component to track
 - **Visualizer.js** and **Visualizer.css**: The main visualization component and its styling. This is where the sorting animations take place, showing how each algorithm processes the data.
 
 #### `components/ui/`
