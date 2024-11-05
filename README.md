@@ -101,4 +101,4 @@ The app is deployed on Vercel and can be accessed here: [Algorithm Visualizer on
 
 ## License
 
-[MIT License](https://github.com/TheKingsident/algorithm-visualizer/blob/master/LICENSE)
+View license information: [MIT License](https://github.com/TheKingsident/algorithm-visualizer/blob/master/LICENSE)
