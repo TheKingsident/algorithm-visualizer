@@ -4,53 +4,65 @@ export const visualizeMergeSort = (
   array,
   speed,
   setCurrentIndex,
-  onAnimationComplete
+  onAnimationComplete,
+  currentIndex = 0
 ) => {
   const animations = mergeSort(array);
   const arrayBars = document.getElementsByClassName('array-bar');
   const timeouts = [];
+  
+  const primaryColor = '#6366F1';
+  const compareColor = 'red';
+  const overwriteColor = 'green';
 
-  for (let i = 0; i < animations.length; i++) {
+  // Start from currentIndex to support pause/resume
+  for (let i = currentIndex; i < animations.length; i++) {
     const [indexOne, indexTwoOrValue, isOverwrite] = animations[i];
+    const animationDelay = (i - currentIndex) * speed;
 
-    // Log the indices being used
-    console.log(`Animation ${i}: indexOne=${indexOne}, indexTwoOrValue=${indexTwoOrValue}, arrayBars.length=${arrayBars.length}`);
-
-    if (indexOne < arrayBars.length && indexTwoOrValue < arrayBars.length) {
+    if (indexOne < arrayBars.length && (!isOverwrite ? indexTwoOrValue < arrayBars.length : true)) {
       const timeoutId = setTimeout(() => {
-        if (!isOverwrite) {
-          // Comparison step, set both bars to red to indicate comparison
-          arrayBars[indexOne].style.backgroundColor = 'red';
-          arrayBars[indexTwoOrValue].style.backgroundColor = 'red';
+        // Use requestAnimationFrame for smoother DOM updates
+        requestAnimationFrame(() => {
+          const barOne = arrayBars[indexOne];
+          
+          if (!isOverwrite) {
+            // Comparison step
+            const barTwo = arrayBars[indexTwoOrValue];
+            barOne.style.backgroundColor = compareColor;
+            barTwo.style.backgroundColor = compareColor;
 
-          // Revert color after a short delay
-          setTimeout(() => {
-            arrayBars[indexOne].style.backgroundColor = '#6366F1';
-            arrayBars[indexTwoOrValue].style.backgroundColor = '#6366F1';
-          }, speed);
-        } else {
-          // Overwrite step: Set the height of `indexOne` bar to `indexTwoOrValue`
-          arrayBars[indexOne].style.height = `${indexTwoOrValue}px`;
-          arrayBars[indexOne].style.backgroundColor = 'green';
+            // Revert color after a short delay
+            setTimeout(() => {
+              requestAnimationFrame(() => {
+                barOne.style.backgroundColor = primaryColor;
+                barTwo.style.backgroundColor = primaryColor;
+              });
+            }, speed * 0.5);
+          } else {
+            // Overwrite step: Set the height of `indexOne` bar to `indexTwoOrValue`
+            barOne.style.height = `${indexTwoOrValue}px`;
+            barOne.style.backgroundColor = overwriteColor;
 
-          // Revert color after a short delay
-          setTimeout(() => {
-            arrayBars[indexOne].style.backgroundColor = '#6366F1';
-          }, speed);
-        }
+            // Revert color after a short delay
+            setTimeout(() => {
+              requestAnimationFrame(() => {
+                barOne.style.backgroundColor = primaryColor;
+              });
+            }, speed * 0.5);
+          }
 
-        // Update the current index for tracking purposes
-        setCurrentIndex(i);
+          // Update the current index for tracking purposes
+          setCurrentIndex(i + 1);
 
-        // Check if it's the last animation
-        if (i === animations.length - 1) {
-          onAnimationComplete(true);
-        }
-      }, i * speed);
+          // Check if it's the last animation
+          if (i === animations.length - 1) {
+            onAnimationComplete(true);
+          }
+        });
+      }, animationDelay);
 
       timeouts.push(timeoutId);
-    } else {
-      console.error(`Invalid indices: indexOne=${indexOne}, indexTwoOrValue=${indexTwoOrValue}, arrayBars.length=${arrayBars.length}`);
     }
   }
 

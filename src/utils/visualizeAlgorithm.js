@@ -9,7 +9,7 @@ export const visualizeAlgorithm = (
   sortType,
   array,
   speed,
-  currentIndex,
+  currentIndex = 0,
   setCurrentIndex,
   onAnimationComplete
 ) => {
@@ -46,30 +46,48 @@ export const visualizeAlgorithm = (
     return [];
   }
 
-  for (let i = 0; i < animations.length; i++) {
+  // Cache DOM elements once
+  const arrayBars = document.getElementsByClassName('array-bar');
+  const primaryColor = '#6366F1';
+  const compareColor = 'red';
+
+  // Start from currentIndex to support pause/resume
+  for (let i = currentIndex; i < animations.length; i++) {
     const [barOneIdx, barTwoIdx, swap] = animations[i];
-    const arrayBars = document.getElementsByClassName('array-bar');
+    const animationDelay = (i - currentIndex) * speed;
 
     const timeoutId = setTimeout(() => {
-      arrayBars[barOneIdx].style.backgroundColor = 'red';
-      arrayBars[barTwoIdx].style.backgroundColor = 'red';
+      // Use requestAnimationFrame for smoother DOM updates
+      requestAnimationFrame(() => {
+        if (barOneIdx < arrayBars.length && barTwoIdx < arrayBars.length) {
+          const barOne = arrayBars[barOneIdx];
+          const barTwo = arrayBars[barTwoIdx];
 
-      if (swap) {
-        const tempHeight = arrayBars[barOneIdx].style.height;
-        arrayBars[barOneIdx].style.height = arrayBars[barTwoIdx].style.height;
-        arrayBars[barTwoIdx].style.height = tempHeight;
-      }
+          barOne.style.backgroundColor = compareColor;
+          barTwo.style.backgroundColor = compareColor;
 
-      setTimeout(() => {
-        arrayBars[barOneIdx].style.backgroundColor = '#6366F1';
-        arrayBars[barTwoIdx].style.backgroundColor = '#6366F1';
-        setCurrentIndex(i);
+          if (swap) {
+            const tempHeight = barOne.style.height;
+            barOne.style.height = barTwo.style.height;
+            barTwo.style.height = tempHeight;
+          }
 
-        if (i === animations.length - 1) {
-          onAnimationComplete(true);
+          // Reset colors after brief delay
+          setTimeout(() => {
+            requestAnimationFrame(() => {
+              barOne.style.backgroundColor = primaryColor;
+              barTwo.style.backgroundColor = primaryColor;
+            });
+          }, speed * 0.5);
+
+          setCurrentIndex(i + 1);
+
+          if (i === animations.length - 1) {
+            onAnimationComplete(true);
+          }
         }
-      }, speed);
-    }, i * speed);
+      });
+    }, animationDelay);
 
     timeouts.push(timeoutId);
   }

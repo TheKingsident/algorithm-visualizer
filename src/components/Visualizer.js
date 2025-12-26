@@ -33,13 +33,12 @@ function Visualizer() {
 
   const onAlgorithmChange = (selectedAlgorithm) => {
     setSortType(selectedAlgorithm);
-    generateArray();
   };
 
   const onStartSorting = () => {
     if (sortType) {
+      setSortingState('running');
       if (sortType === 'merge') {
-        setSortingState('running');
         const newTimeouts = visualizeMergeSort(
           array,
           100 - speed,
@@ -49,22 +48,23 @@ function Visualizer() {
               setSortingState('finished');
             }
           }
-        )
-      }
-      setSortingState('running');
-      const newTimeouts = visualizeAlgorithm(
-        sortType,
-        array,
-        100 - speed,
-        currentIndex,
-        setCurrentIndex, 
-        (completed) => {
-          if (completed) {
-            setSortingState('finished');
+        );
+        setTimeouts(newTimeouts);
+      } else {
+        const newTimeouts = visualizeAlgorithm(
+          sortType,
+          array,
+          100 - speed,
+          0,
+          setCurrentIndex, 
+          (completed) => {
+            if (completed) {
+              setSortingState('finished');
+            }
           }
-        }
-      );
-      setTimeouts(newTimeouts);
+        );
+        setTimeouts(newTimeouts);
+      }
     }
   };
 
@@ -82,19 +82,34 @@ function Visualizer() {
   const onContinue = () => {
     if (sortingState === 'paused') {
       setSortingState('running');
-      const newTimeouts = visualizeAlgorithm(
-        sortType,
-        array,
-        100 - speed,
-        currentIndex,
-        setCurrentIndex, 
-        (completed) => {
-          if (completed) {
-            setSortingState('stopped');
+      if (sortType === 'merge') {
+        const newTimeouts = visualizeMergeSort(
+          array,
+          100 - speed,
+          setCurrentIndex,
+          (completed) => {
+            if (completed) {
+              setSortingState('finished');
+            }
+          },
+          currentIndex
+        );
+        setTimeouts(newTimeouts);
+      } else {
+        const newTimeouts = visualizeAlgorithm(
+          sortType,
+          array,
+          100 - speed,
+          currentIndex,
+          setCurrentIndex, 
+          (completed) => {
+            if (completed) {
+              setSortingState('finished');
+            }
           }
-        }
-      );
-      setTimeouts(newTimeouts);
+        );
+        setTimeouts(newTimeouts);
+      }
     }
   };
 
@@ -104,6 +119,10 @@ function Visualizer() {
     setCurrentIndex(0);
     setSortType(null);
     generateArray();  // Reset to a new array
+  };
+
+  const onResetArray = () => {
+    generateArray(100);
   };
 
   return (
@@ -116,7 +135,7 @@ function Visualizer() {
       <ControlPanel
         speed={speed}
         onSpeedChange={onSpeedChange}
-        onResetArray={generateArray}
+        onResetArray={onResetArray}
         onAlgorithmChange={onAlgorithmChange}
         onPause={onPause}
         onContinue={onContinue}

@@ -53,9 +53,10 @@ const ControlPanel = ({
             disabled={!selectedAlgorithm || sortingState === 'running' || sortingState === 'paused' || sortingState === "finished"}>
             Start Sorting
           </Button>
+          <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>
+          <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>
           <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onStop} disabled={sortingState !== 'running' && sortingState !== 'paused'}>Stop</Button>
-          {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onPause} disabled={sortingState !== 'running'}>Pause</Button>*/}
-          {/*<Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onContinue} disabled={sortingState !== 'paused'}>Continue</Button>*/}
+          <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={onResetArray} disabled={sortingState === 'running' || sortingState === 'paused'}>Reset Array</Button>
         </div>
         <div>
           <Button className="m-1 bg-indigo-400 text-gray-900 hover:bg-indigo-300" onClick={handleAboutClick} disabled={!selectedAlgorithm}>About Algorithm</Button>
