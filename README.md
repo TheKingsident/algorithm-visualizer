@@ -51,15 +51,14 @@ This folder contains the reusable UI components that make up the main parts of t
 - **Counter.js**: A component for displaying or managing counters, possibly to show the steps or comparisons made during sorting.
 - **Footer.js**: The footer component, containing links to social media and credit information.
 - **Header.js**: The header component, providing the app’s title and navigation elements.
-- **Timer.js**: A timer component to track the duration of the sorting process.
 - **Visualizer.js** and **Visualizer.css**: The main visualization component and its styling. This is where the sorting animations take place, showing how each algorithm processes the data.
 
 #### `components/ui/`
 
 UI components to manage pop-ups and other interface elements.
 
-- **button.jsx/**: A customizable button component. It serves as a flexible button that you can style and reuse throughout the app wherever a button is needed.
-- **dropdown-menu.jsx/**: Adds a dropdown menu component that expands when clicked, showing the list of sorting algorithms. Great for offering users multiple options without cluttering the interface.
+- **button.jsx/**: A customizable button component. It serves as the flexible button that's customised and reused throughout the app whenever and wherever a button is needed.
+- **dropdown-menu.jsx/**: Adds a dropdown menu component that expands when clicked, showing the list of sorting algorithms. Offering users multiple sorting algorithm options without cluttering the interface.
 - **sheet.jsx/**: The base component for sliding sheets, often used as a sidebar or a pop-up information pane. This component powers the AlgorithmInfoSheet, allowing information about algorithms to be displayed in an organized, off-canvas style.
 - **slider.jsx/**: A slider component that allows users to select a value from a range. Used for settings or input that requires selecting speed within a bounded range.
 
@@ -101,4 +100,4 @@ The app is deployed on Vercel and can be accessed here: [Algorithm Visualizer on
 
 ## License
 
-[MIT License](https://github.com/TheKingsident/algorithm-visualizer/blob/master/LICENSE)
+View license information: [MIT License](https://github.com/TheKingsident/algorithm-visualizer/blob/master/LICENSE)
